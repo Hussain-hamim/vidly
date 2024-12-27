@@ -5,5 +5,5 @@ function log(message) {
   console.log(message);
 }
 
-module.export.log = log;
-module.export.endpoint = url;
+module.exports.log = log;
+module.exports.endpoint = url;

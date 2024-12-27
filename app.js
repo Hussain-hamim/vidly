@@ -1,8 +1,3 @@
-function name() {
-  console.log("hello world");
-}
+const logger = require("./logger");
 
-// name();
-
-const one = "";
-console.log(global.one);
+console.log(logger.log("hello"));

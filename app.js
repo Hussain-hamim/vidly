@@ -4,4 +4,5 @@ function name() {
 
 // name();
 
-console.log(window);
+const one = "";
+console.log(global.one);

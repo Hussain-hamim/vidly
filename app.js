@@ -3,6 +3,7 @@ import { log } from "./logger.js";
 import path from "path";
 import os from "os";
 import fs from "fs";
+import EventEmitter from "events";
 
 console.log(log("hello"));
 // console.log(log(path.parse("./logger.js")));
@@ -12,10 +13,20 @@ console.log(log("hello"));
 // console.log(os.totalmem());
 // console.log(os.freemem());
 
-const files = fs.readdirSync("./");
-console.log(files);
+// const files = fs.readdirSync("./");
+// console.log(files);
 
-fs.readdir("./", function (err, files) {
-  if (err) console.log(err);
-  else console.log(files);
+// fs.readdir("./", function (err, files) {
+//   if (err) console.log(err);
+//   else console.log(files);
+// });
+
+const emitter = new EventEmitter();
+
+// register a listener
+emitter.on("messageLogged", function () {
+  console.log("listener logged");
 });
+
+// raise an event
+emitter.emit("messageLogged"); // emit: making a noise, produce - signalling

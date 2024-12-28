@@ -20,12 +20,39 @@ import EventEmitter from "events";
 //   else console.log(files);
 // });
 
-import { Logger } from "./logger.js";
-const logger = new Logger();
+// import { Logger } from "./logger.js";
+// const logger = new Logger();
 
-// register a listener
-logger.on("messageLogged", ({ id, url }) => {
-  console.log("listener logged", url);
+// // register a listener
+// logger.on("messageLogged", ({ id, url }) => {
+//   console.log("listener logged", url);
+// });
+
+// logger.log("message");
+
+import http from "http";
+
+const server = http.createServer((req, res) => {
+  // this the root route
+  if (req.url === "/") {
+    res.write("hello world");
+    res.end();
+  }
+
+  // we can have more routes
+  if (req.url === "/api/courses") {
+    res.write(JSON.stringify([1, 2, 3]));
+    res.end();
+  }
 });
 
-logger.log("message");
+// this is old way of doing it
+// // register to event
+// server.on("connection", (socket) => {
+//   console.log("new connection...");
+// });
+
+// raise event
+server.listen(3000);
+
+console.log("listing on port 3000...");

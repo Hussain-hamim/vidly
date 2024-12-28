@@ -30,21 +30,22 @@ import EventEmitter from "events";
 
 // logger.log("message");
 
-import http from "http";
+// this is the old way:
+// import http from "http";
 
-const server = http.createServer((req, res) => {
-  // this the root route
-  if (req.url === "/") {
-    res.write("hello world");
-    res.end();
-  }
+// const server = http.createServer((req, res) => {
+//   // this the root route
+//   if (req.url === "/") {
+//     res.write("hello world");
+//     res.end();
+//   }
 
-  // we can have more routes
-  if (req.url === "/api/courses") {
-    res.write(JSON.stringify([1, 2, 3]));
-    res.end();
-  }
-});
+//   // we can have more routes
+//   if (req.url === "/api/courses") {
+//     res.write(JSON.stringify([1, 2, 3]));
+//     res.end();
+//   }
+// });
 
 // this is old way of doing it
 // // register to event
@@ -53,6 +54,8 @@ const server = http.createServer((req, res) => {
 // });
 
 // raise event
-server.listen(3000);
+// server.listen(3000);
 
-console.log("listing on port 3000...");
+// console.log("listing on port 3000...");
+
+//this is the expressjs way:

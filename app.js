@@ -24,9 +24,15 @@ console.log(log("hello"));
 const emitter = new EventEmitter();
 
 // register a listener
-emitter.on("messageLogged", function () {
-  console.log("listener logged");
+emitter.on("messageLogged", ({ id, url }) => {
+  console.log("listener logged", url);
 });
 
 // raise an event
-emitter.emit("messageLogged"); // emit: making a noise, produce - signalling
+emitter.emit("messageLogged", { id: 1, url: "http://" }); // emit: making a noise, produce - signalling
+
+emitter.on("logging", ({ data }) => {
+  console.log(data);
+});
+
+emitter.emit("logging", { data: "message" });

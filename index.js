@@ -13,6 +13,11 @@ const dbDebugger = debug("app:db");
 
 const app = express();
 
+// set the view engine for our app:
+// so we can send html to our client
+app.set("view engine", "pug");
+app.set("views", "./views");
+
 // database
 dbDebugger("database debugger...");
 
@@ -33,7 +38,6 @@ app.use(express.static("public"));
 app.use(helmet());
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
-  // console.log("morgan enabled...");
   appDebugger("morgan enabled...");
 }
 
@@ -47,8 +51,9 @@ const courses = [
   { id: 3, name: "course 3" },
 ];
 
+// this below show a h1 tag in the body with pug view template engine lib
 app.get("/", (req, res) => {
-  res.send("Hello world!!");
+  res.render("index", { title: "my express app", message: "Hello World" });
 });
 
 app.get("/api/courses", (req, res) => {

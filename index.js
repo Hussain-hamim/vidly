@@ -4,11 +4,16 @@ import { log } from "./logger.js";
 import { authenticating } from "./authenticating.js";
 import helmet from "helmet";
 import morgan from "morgan";
+import config from "config";
 
 const app = express();
 
 // console.log("node_env: ", process.env.NODE_ENV);
 console.log("env: ", app.get("env"));
+
+//// configuration:
+// console.log("app name: ", config.get("name"));
+// console.log("mail server: ", config.get("mail.host"));
 
 // built in middleware:
 app.use(express.json());

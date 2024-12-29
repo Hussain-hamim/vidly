@@ -1,8 +1,15 @@
 import express from "express";
 import Joi from "joi";
+import { log } from "./logger.js";
+import { authenticating } from "./authenticating.js";
 const app = express();
 
+// built in middleware:
 app.use(express.json());
+
+// custom middleware functions:
+app.use(log);
+app.use(authenticating);
 
 const courses = [
   { id: 1, name: "course 1" },
@@ -19,6 +26,7 @@ app.get("/api/courses", (req, res) => {
 });
 
 app.get("/api/courses/:id", (req, res) => {
+  // this call back is a route handler fn
   const course = courses.find((c) => c.id === parseInt(req.params.id));
   if (!course)
     return res.status(404).send("the course with given id was not found");
@@ -60,7 +68,7 @@ app.delete("/api/courses/:id", (req, res) => {
     return res.status(404).send("the course with given id was not found");
 
   const index = courses.indexOf(course);
-  courses.splice(index, 1);
+  courses.splice(index, 1); // delete one course with given index
 
   res.send(course);
 });

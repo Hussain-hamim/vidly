@@ -6,6 +6,8 @@ const app = express();
 
 // built in middleware:
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // key=value&key=value
+app.use(express.static("public"));
 
 // custom middleware functions:
 app.use(log);

@@ -2,12 +2,19 @@ import express from "express";
 import Joi from "joi";
 import { log } from "./logger.js";
 import { authenticating } from "./authenticating.js";
+import helmet from "helmet";
+import morgan from "morgan";
+
 const app = express();
 
 // built in middleware:
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // key=value&key=value
 app.use(express.static("public"));
+
+// third-party middleware:
+app.use(helmet());
+app.use(morgan("tiny"));
 
 // custom middleware functions:
 app.use(log);
@@ -28,7 +35,7 @@ app.get("/api/courses", (req, res) => {
 });
 
 app.get("/api/courses/:id", (req, res) => {
-  // this call back is a route handler fn
+  // this callback is a route handler fn
   const course = courses.find((c) => c.id === parseInt(req.params.id));
   if (!course)
     return res.status(404).send("the course with given id was not found");

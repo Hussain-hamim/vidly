@@ -7,6 +7,9 @@ import morgan from "morgan";
 
 const app = express();
 
+// console.log("node_env: ", process.env.NODE_ENV);
+console.log("env: ", app.get("env"));
+
 // built in middleware:
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // key=value&key=value
@@ -14,7 +17,10 @@ app.use(express.static("public"));
 
 // third-party middleware:
 app.use(helmet());
-app.use(morgan("tiny"));
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+  console.log("morgan enabled...");
+}
 
 // custom middleware functions:
 app.use(log);

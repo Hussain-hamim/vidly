@@ -6,9 +6,17 @@ import helmet from "helmet";
 import morgan from "morgan";
 import config from "config";
 
+import debug from "debug";
+
+const appDebugger = debug("app:startup");
+const dbDebugger = debug("app:db");
+
 const app = express();
 
-// console.log("node_env: ", process.env.NODE_ENV);
+// database
+dbDebugger("database debugger...");
+
+console.log("node_env: ", process.env.NODE_ENV);
 console.log("env: ", app.get("env"));
 
 //// configuration:
@@ -25,7 +33,8 @@ app.use(express.static("public"));
 app.use(helmet());
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
-  console.log("morgan enabled...");
+  // console.log("morgan enabled...");
+  appDebugger("morgan enabled...");
 }
 
 // custom middleware functions:
@@ -99,7 +108,7 @@ app.get("/api/search", (req, res) => {
   res.send(req.query);
 });
 
-// process.env.PORT = 6000;
+// process.env.PORT = 6000; // export PORT=5000 ===> in terminal
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`listening on port ${port}...`));

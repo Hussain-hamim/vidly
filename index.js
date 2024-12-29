@@ -12,8 +12,9 @@ const app = express();
 console.log("env: ", app.get("env"));
 
 //// configuration:
-// console.log("app name: ", config.get("name"));
-// console.log("mail server: ", config.get("mail.host"));
+console.log("app name: ", config.get("name"));
+console.log("mail server: ", config.get("mail.host"));
+// console.log("mail password: ", config.get("mail.password"));
 
 // built in middleware:
 app.use(express.json());

@@ -37,7 +37,25 @@ const p4 = new Promise((resolve, reject) => {
   }, 2000);
 });
 
+Promise.all([p3, p4])
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => console.log("error", error));
+
 Promise.race([p3, p4])
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => console.log("error", error));
+
+Promise.any([p3, p4])
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => console.log("error", error));
+
+Promise.allSettled([p3, p4])
   .then((result) => {
     console.log(result);
   })

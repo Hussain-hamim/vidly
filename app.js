@@ -64,16 +64,29 @@ console.log("before");
 
 // this is an example fn of a async op
 // async do not mean that the it is multi threaded
-getUser(1, (user) => {
-  console.log("user ", user);
+// getUser(1, (user) => {
+//   getRepos(user.username, (repos) => {
+//     getCommits(repos[0], (commits) => {
+//       console.log(commits);
+//     });
+//   });
 
-  // get the repo
-  getRepos(user.username, (repos) => {
-    console.log(user.username, repos);
-  });
+//   // CALLBACK HELL
+// });
 
-  // CALLBACK HELL
-});
+getUser(1)
+  .then((user) => {
+    console.log(user);
+    return getRepos(user.username);
+  })
+  .then((repo) => {
+    console.log(repo);
+    return getCommits(repo[0]);
+  })
+  .then((commits) => {
+    console.log(commits);
+  })
+  .catch((error) => console.log(error.message));
 
 console.log("after");
 

@@ -64,21 +64,34 @@ console.log("before");
 
 // this is an example fn of a async op
 // async do not mean that the it is multi threaded
-const user = getUser(1);
-console.log(user);
+getUser(1, (user) => {
+  console.log("user ", user);
+
+  // get the repo
+  getRepos(user.username, (repos) => {
+    console.log(user.username, repos);
+  });
+});
 
 console.log("after");
 
-function getUser(id) {
+////// there are three pattern to deal with async code:
+//1. callback
+function getUser(id, callback) {
   setTimeout(() => {
     console.log("reading user from db...");
-    return { id: id, username: "hussain" };
+    callback({ id: id, username: "hussain" });
   }, 2000);
 
   return 1;
 }
 
-// there are three pattern to deal with async code:
-//1. callback
+function getRepos(username, callback) {
+  setTimeout(() => {
+    console.log("calling github api...");
+    callback(["repo1", "repo2", "repo3"]);
+  }, 2000);
+}
+
 //2. promises
 //3. async/await

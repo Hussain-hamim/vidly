@@ -64,6 +64,8 @@ console.log("before");
 
 // this is an example fn of a async op
 // async do not mean that the it is multi threaded
+
+// this the callback approach:
 // getUser(1, (user) => {
 //   getRepos(user.username, (repos) => {
 //     getCommits(repos[0], (commits) => {
@@ -74,6 +76,7 @@ console.log("before");
 //   // CALLBACK HELL
 // });
 
+// this the promise approach:
 getUser(1)
   .then((user) => {
     console.log(user);

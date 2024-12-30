@@ -95,5 +95,9 @@ function getRepos(username, callback) {
   }, 2000);
 }
 
-//2. promises
+//2. promises:
+///// hold the eventual result of an asynchronous operation
+// promise to give the result of an async op
+//// promise state: pending, fulfilled, rejected
+
 //3. async/await

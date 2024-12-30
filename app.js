@@ -128,4 +128,24 @@ function getCommits(repo) {
 // promise to give the result of an async op
 //// promise state: pending, fulfilled, rejected
 
-//3. async/await
+//3. async/await approach:
+//// built on top of promises, its a syntactical sugar of promise
+// which let us write async code in sync format 😊
+// to catch error use try/catch
+
+const user = await getUser(1);
+const repos = await getRepos(user.username);
+const commits = await getCommits(repos[0]);
+console.log(commits);
+
+async function displayCommits() {
+  try {
+    const user = await getUser(1);
+    const repos = await getRepos(user.username);
+    const commits = await getCommits(repos[0]);
+    console.log(commits);
+  } catch (error) {
+    console.log("error", error);
+  }
+}
+displayCommits();

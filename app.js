@@ -148,4 +148,4 @@ async function displayCommits() {
     console.log("error", error);
   }
 }
-displayCommits();
+displayCommits(); //// async/await 👏

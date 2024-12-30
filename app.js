@@ -59,3 +59,11 @@ import EventEmitter from "events";
 // console.log("listing on port 3000...");
 
 //this is the expressjs way:
+
+console.log("before");
+
+setTimeout(() => {
+  console.log("reading user from db...");
+}, 2000);
+
+console.log("after");

@@ -79,20 +79,32 @@ console.log("after");
 
 ////// there are three pattern to deal with async code:
 //1. callback
-function getUser(id, callback) {
-  setTimeout(() => {
-    console.log("reading user from db...");
-    callback({ id: id, username: "hussain" });
-  }, 2000);
-
-  return 1;
+function getUser(id) {
+  return new Promise((resolve, reject) => {
+    // kick of some async work
+    setTimeout(() => {
+      console.log("reading user from db...");
+      resolve({ id: id, username: "hussain" });
+    }, 2000);
+  });
 }
 
-function getRepos(username, callback) {
-  setTimeout(() => {
-    console.log("calling github api...");
-    callback(["repo1", "repo2", "repo3"]);
-  }, 2000);
+function getRepos(username) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("calling github api...");
+      resolve(["repo1", "repo2", "repo3"]);
+    }, 2000);
+  });
+}
+
+function getCommits(repo) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("calling github api...");
+      resolve(["commit"]);
+    }, 2000);
+  });
 }
 
 //2. promises:

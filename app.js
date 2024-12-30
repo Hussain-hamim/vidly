@@ -71,6 +71,8 @@ getUser(1, (user) => {
   getRepos(user.username, (repos) => {
     console.log(user.username, repos);
   });
+
+  // CALLBACK HELL
 });
 
 console.log("after");

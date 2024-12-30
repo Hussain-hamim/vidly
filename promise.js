@@ -37,7 +37,7 @@ const p4 = new Promise((resolve, reject) => {
   }, 2000);
 });
 
-Promise.all([p3, p4])
+Promise.race([p3, p4])
   .then((result) => {
     console.log(result);
   })

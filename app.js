@@ -62,8 +62,23 @@ import EventEmitter from "events";
 
 console.log("before");
 
-setTimeout(() => {
-  console.log("reading user from db...");
-}, 2000);
+// this is an example fn of a async op
+// async do not mean that the it is multi threaded
+const user = getUser(1);
+console.log(user);
 
 console.log("after");
+
+function getUser(id) {
+  setTimeout(() => {
+    console.log("reading user from db...");
+    return { id: id, username: "hussain" };
+  }, 2000);
+
+  return 1;
+}
+
+// there are three pattern to deal with async code:
+//1. callback
+//2. promises
+//3. async/await

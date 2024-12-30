@@ -33,6 +33,7 @@ console.log("mail server: ", config.get("mail.host"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // key=value&key=value
 app.use(express.static("public"));
+
 //for any route route started with this, use this router 'courses'
 app.use("/api/courses", courses);
 app.use("/", home);
